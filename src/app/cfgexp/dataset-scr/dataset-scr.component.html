@@ -1,0 +1,78 @@
+<div fxLayout="col">
+  <div fxFlex="30%">
+    <form [formGroup]="firstFormGroup">
+      <mat-form-field>
+        <mat-select placeholder="Experiment Type" [(value)]="extypeVar">
+          <mat-option *ngFor="let ex of extypeList" [value]="ex.name">
+            {{ ex.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-form-field>
+        <mat-select placeholder="Dataset" multiple [(value)]="selectedDatasets" [compareWith]="compareFn">
+          <mat-option *ngFor="let dataset of dsList" [value]="dataset.name">{{dataset.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="!selectedDatasets">
+        <p> No dataset has been selected yet</p><br>
+      </div>
+      <mat-divider></mat-divider>
+      <div>
+        <p> Alternatively, add your own dataset </p>
+        <mat-form-field>
+          <input matInput placeholder="Dataset Name" formControlName="curName">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button (click)="fileInput.click() || fileInput.value=null">
+          <span>Select and Add File</span>
+          <input #fileInput type="file" (change)="fileChange($event)" style="display:none;"/>
+        </button>
+        <!--<input mat-button type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">-->
+        <br>
+        <br>
+      </div>
+      <mat-divider></mat-divider>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Language">
+        <mat-hint>Type Something eg. fr</mat-hint>
+      </mat-form-field>
+      <br><br>
+      <mat-divider></mat-divider>
+      <br>
+      <button mat-raised-button matStepperNext>Next</button>
+    </form>
+  </div>
+  <div fxFlex></div>
+  <div fxFlex="50%">
+    <div >
+      Chosen Datasets:<br><br>  <mat-divider></mat-divider>
+      <mat-table #table [dataSource]="getSelectedDatasets()" class="table-cls mat-elevation-z4">
+        <ng-container matColumnDef="position" colspan="'1'">
+          <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{chosenDatasets.indexOf(element)+1}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name" colspan="'4'">
+          <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.name?element.name:element}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete" colspan="'1'">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button (click)="deleteMember(row)" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+  </div>
+</div>

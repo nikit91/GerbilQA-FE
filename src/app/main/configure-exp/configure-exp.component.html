@@ -1,0 +1,15 @@
+<br>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Choose Datasets</ng-template>
+    <app-dataset-scr [(dsList)]="datasetList"></app-dataset-scr>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Select Systems</ng-template>
+    <app-system-scr></app-system-scr>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <app-result-scr></app-result-scr>
+  </mat-step>
+</mat-horizontal-stepper>

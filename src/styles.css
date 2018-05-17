@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+}
+.grid-align1 {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 10px;
+}
+.tile-back {
+  background: lightblue;
+}
+.table-cls {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow: auto;
+}
