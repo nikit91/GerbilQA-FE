@@ -48,8 +48,9 @@
   </div>
   <div fxFlex></div>
   <div fxFlex="50%">
-    <div >
-      Chosen Datasets:<br><br>  <mat-divider></mat-divider>
+    <div>
+      Chosen Datasets:<br><br>
+      <mat-divider></mat-divider>
       <mat-table #table [dataSource]="getSelectedDatasets()" class="table-cls mat-elevation-z4">
         <ng-container matColumnDef="position" colspan="'1'">
           <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
@@ -64,7 +65,7 @@
         <ng-container matColumnDef="delete" colspan="'1'">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let row">
-            <button (click)="deleteMember(row)" mat-button>
+            <button (click)="removeFromChosen(row)" mat-button>
               <mat-icon>delete</mat-icon>
             </button>
           </mat-cell>

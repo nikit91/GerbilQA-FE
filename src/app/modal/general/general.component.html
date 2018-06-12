@@ -1,0 +1,8 @@
+<p>
+  {{msg}}
+</p>
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5px">
+  <button mat-raised-button *ngFor="let btn of actnBtns" (click)="actnBtnClick(btn)"
+  >{{btn.label}}
+  </button>
+</div>
