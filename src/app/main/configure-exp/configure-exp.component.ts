@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DatasetScrComponent} from "../../cfgexp/dataset-scr/dataset-scr.component";
+import {DatasetScrComponent} from '../../cfgexp/dataset-scr/dataset-scr.component';
+import {SystemScrComponent} from '../../cfgexp/system-scr/system-scr.component';
 
 @Component({
   selector: 'app-configure-exp',
@@ -7,6 +8,8 @@ import {DatasetScrComponent} from "../../cfgexp/dataset-scr/dataset-scr.componen
   styleUrls: ['./configure-exp.component.css']
 })
 export class ConfigureExpComponent implements OnInit {
+  @ViewChild(DatasetScrComponent) dsComp;
+  @ViewChild(SystemScrComponent) ssc: SystemScrComponent;
   datasetList: Dataset[] = [
     {name: 'Dataset A'},
     {name: 'Dataset B'},
@@ -37,8 +40,6 @@ export class ConfigureExpComponent implements OnInit {
     {name: 'System L'},
     {name: 'System M'}
   ];
-  @ViewChild(DatasetScrComponent) dsComp;
-
   getModifiedDataset(): Dataset[] {
     return this.datasetList.concat(this.dsComp.uploadedDatasets);
   }

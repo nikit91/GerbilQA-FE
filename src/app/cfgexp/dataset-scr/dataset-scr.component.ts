@@ -22,14 +22,18 @@ export class DatasetScrComponent implements OnInit {
   uploadedDatasets: Dataset[] = [];
 
   constructor(private _formBuilder: FormBuilder, public modalservice: ModalService) {
-  }
-
-  ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
       curName: '',
       extype: this.extypeVar
     });
+  }
+
+  ngOnInit() {
+  }
+
+  public fetchUserModDSList(): Dataset[] {
+    return this.dsList.concat(this.uploadedDatasets);
   }
 
   compareFn(c1: any, c2: any): boolean {
